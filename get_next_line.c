@@ -6,7 +6,7 @@
 /*   By: ysakuma <ysakuma@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 13:39:50 by ysakuma           #+#    #+#             */
-/*   Updated: 2020/10/22 18:53:41 by ysakuma          ###   ########.fr       */
+/*   Updated: 2020/10/23 12:52:32 by ysakuma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 int get_next_line(int fd, char **line)
 {
 	ssize_t len;
-	static char *buf;
+	static char *save[FD_MAX];
+	char *buf;
 
 	if (!line || fd < 0 || fd > FD_MAX)
 		//error action

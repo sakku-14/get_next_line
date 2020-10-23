@@ -6,7 +6,7 @@
 /*   By: ysakuma <ysakuma@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 13:43:50 by ysakuma           #+#    #+#             */
-/*   Updated: 2020/10/22 18:53:50 by ysakuma          ###   ########.fr       */
+/*   Updated: 2020/10/23 14:02:41 by ysakuma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <limits.h>
 
 # ifndef MAX_FD
-#  define MAX_FD 1024
+#  define MAX_FD 256
 # endif
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
