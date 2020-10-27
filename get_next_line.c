@@ -6,7 +6,7 @@
 /*   By: ysakuma <ysakuma@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 13:39:50 by ysakuma           #+#    #+#             */
-/*   Updated: 2020/10/22 18:53:41 by ysakuma          ###   ########.fr       */
+/*   Updated: 2020/10/27 22:09:57 by ysakuma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,20 @@
 int get_next_line(int fd, char **line)
 {
 	ssize_t len;
-	static char *buf;
+	static char *save[FD_MAX];
+	char *buf;
 
 	if (!line || fd < 0 || fd > FD_MAX)
 		//error action
-	if (!(buf = malloc(sizeof(char) * (BUFFER_SIZE + 1))))
+	if (!save[fd])
 		//error action
-	len = 0;
-	if (!(len = read(fd, buf, BUFFER_SIZE)) < 0)
+	if (!(buf = malloc(BUFFER_SIZE)))
 		//error action
-	while (*buf)
+	if (ft_memchr(save[fd], '\n', ft_strlen(save[fd])))
+		//'\n'があった時の処理
+	while ((len = read(fd, buf, BUFFER_SIZE)) >= 0)
 	{
-		if (*buf == '\n')
-			break;
-		*line++ = *buf++;
+		
 	}
 
 }
