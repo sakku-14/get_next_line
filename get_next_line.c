@@ -6,7 +6,7 @@
 /*   By: ysakuma <ysakuma@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 13:39:50 by ysakuma           #+#    #+#             */
-/*   Updated: 2020/10/27 22:13:03 by ysakuma          ###   ########.fr       */
+/*   Updated: 2020/10/28 17:06:42 by ysakuma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,17 @@ int get_next_line(int fd, char **line)
 	char *buf;
 
 	if (!line || fd < 0 || fd > FD_MAX)
-		//error action
+		return (-1);)
 	if (!save[fd])
-		//error action
+		//
 	if (!(buf = malloc(BUFFER_SIZE)))
 		//error action
 	if (ft_memchr(save[fd], '\n', ft_strlen(save[fd])))
 		//'\n'があった時の処理
 	while ((len = read(fd, buf, BUFFER_SIZE)) >= 0)
 	{
-		
+		//buf内をs[fd]へくっつける
+		//buf内に改行があるか
+		//lenの長さを基にファイルの終端かどうか確認する
 	}
-
 }
