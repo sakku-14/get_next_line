@@ -6,13 +6,13 @@
 /*   By: ysakuma <ysakuma@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 13:39:50 by ysakuma           #+#    #+#             */
-/*   Updated: 2020/10/29 14:33:42 by ysakuma          ###   ########.fr       */
+/*   Updated: 2020/10/29 20:06:57 by ysakuma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int gnl_overwite(char *save, char **line, char *buf)
+int	gnl_overwite(char *save, char **line, char *buf)
 {
 	size_t	len;
 	size_t	len_after;
@@ -20,7 +20,10 @@ int gnl_overwite(char *save, char **line, char *buf)
 
 	len = 0;
 	while (*save != '\n')
-		len++
+	{
+		save++;
+		len++;
+	}
 	if (!(*line = malloc(sizeof(char) * (len + 1))))
 		return (-1);//error処理
 	ft_strlcpy(*line, save, len + 1);
@@ -33,11 +36,27 @@ int gnl_overwite(char *save, char **line, char *buf)
 	return (1);
 }
 
-int gnl_lastact(char *save, char **line, char *buf)
+int gnl_attach(char *buf, char *save, ssize_t len)
+{
+	size_t	ori_len;
+	char	*tmp;
+
+	ori_len = ft_strlen(save);
+	if (!(tmp = malloc(sizeof(char) * (ori_len + 1))))
+		return (-1);//error
+	ft_strlcpy(tmp, save, ori_len + 1);
+	if (!(save = malloc(sizeof(char) * (ori_len + len + 1))))
+		return (-1);//error
+	ft_strlcpy(save, tmp, ori_len + 1);
+	ft_strlcat(save, buf, ori_len + len + 1);
+	return (0);
+}
+
+int	gnl_lastact(char *save, char **line, char *buf)
 {
 	size_t	len;
 
-	len = ft_strlen(*s);
+	len = ft_strlen(save);
 	if (!(*line = malloc(sizeof(char) * (len + 1))))
 		return (-1);//error処理
 	ft_strlcpy(*line, save, len + 1);
@@ -47,16 +66,16 @@ int gnl_lastact(char *save, char **line, char *buf)
 	return (0);
 }
 
-int get_next_line(int fd, char **line)
+int	get_next_line(int fd, char **line)
 {
 	ssize_t len;
-	static char *save[FD_MAX];
+	static char *save[MAX_FD];
 	char *buf;
 
-	if (!line || fd < 0 || fd > FD_MAX)
+	if (!line || fd < 0 || fd > MAX_FD)
 		return (-1);
 	if (!save[fd])
-		if (!(s[fd] = ft_calloc(1, sizeof(char))))
+		if (!(save[fd] = ft_calloc(1, sizeof(char))))
 			return (-1);
 	if (!(buf = malloc(BUFFER_SIZE)))
 	{
@@ -70,13 +89,10 @@ int get_next_line(int fd, char **line)
 	}
 	while ((len = read(fd, buf, BUFFER_SIZE)) >= 0)
 	{
-		//buf内をsave[fd]へくっつける
 		if (gnl_attach(buf, save[fd], len))
 			return (-1);//error
-		//buf内に改行があるか
 		if (ft_memchr(buf, '\n', len))
 			return (gnl_overwite(save[fd], line, buf));
-		//lenの長さを基にファイルの終端かどうか確認する
 		if (len < BUFFER_SIZE)
 			return (gnl_lastact(save[fd], line, buf));
 	}
