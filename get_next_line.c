@@ -6,7 +6,7 @@
 /*   By: ysakuma <ysakuma@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 13:39:50 by ysakuma           #+#    #+#             */
-/*   Updated: 2020/10/28 19:30:32 by ysakuma          ###   ########.fr       */
+/*   Updated: 2020/10/29 14:33:42 by ysakuma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,29 @@ int gnl_overwite(char *save, char **line, char *buf)
 	while (*save != '\n')
 		len++
 	if (!(*line = malloc(sizeof(char) * (len + 1))))
-		//error処理
+		return (-1);//error処理
 	ft_strlcpy(*line, save, len + 1);
 	len_after = ft_strlen(save + len + 1);
 	if (!(tmp = malloc(sizeof(char) * (len_after + 1))))
-		//error処理
+		return (-1);//error処理
 	ft_strlcpy(tmp, save + len + 1, len_after + 1);
 	save = tmp;
 	free(buf);
 	return (1);
+}
+
+int gnl_lastact(char *save, char **line, char *buf)
+{
+	size_t	len;
+
+	len = ft_strlen(*s);
+	if (!(*line = malloc(sizeof(char) * (len + 1))))
+		return (-1);//error処理
+	ft_strlcpy(*line, save, len + 1);
+	free(buf);
+	free(save);
+	save = NULL;
+	return (0);
 }
 
 int get_next_line(int fd, char **line)
@@ -56,8 +70,15 @@ int get_next_line(int fd, char **line)
 	}
 	while ((len = read(fd, buf, BUFFER_SIZE)) >= 0)
 	{
-		//buf内をs[fd]へくっつける
+		//buf内をsave[fd]へくっつける
+		if (gnl_attach(buf, save[fd], len))
+			return (-1);//error
 		//buf内に改行があるか
+		if (ft_memchr(buf, '\n', len))
+			return (gnl_overwite(save[fd], line, buf));
 		//lenの長さを基にファイルの終端かどうか確認する
+		if (len < BUFFER_SIZE)
+			return (gnl_lastact(save[fd], line, buf));
 	}
+	return (-1);//error
 }
