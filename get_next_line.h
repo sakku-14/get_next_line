@@ -6,7 +6,7 @@
 /*   By: ysakuma <ysakuma@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 13:43:50 by ysakuma           #+#    #+#             */
-/*   Updated: 2020/10/23 14:02:41 by ysakuma          ###   ########.fr       */
+/*   Updated: 2020/10/29 14:41:22 by ysakuma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,10 @@
 # endif
 
 int		get_next_line(int fd, char **line);
+void	*ft_calloc(size_t count, size_t size);
+void	*ft_memset(void *b, int c, size_t len);
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
+size_t	ft_strlen(const char *s);
+void	*ft_memchr(const void *s, int c, size_t n);
 
 #endif
