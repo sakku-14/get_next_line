@@ -6,7 +6,7 @@
 /*   By: ysakuma <ysakuma@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 13:39:50 by ysakuma           #+#    #+#             */
-/*   Updated: 2020/10/30 12:52:32 by ysakuma          ###   ########.fr       */
+/*   Updated: 2020/10/31 22:55:45 by ysakuma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int	gnl_lastact(char **save, char **line, char *buf)
 	return (0);
 }
 
+//メモリリーク処理
 int	get_next_line(int fd, char **line)
 {
 	ssize_t len;
