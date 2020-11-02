@@ -6,10 +6,10 @@
 /*   By: ysakuma <ysakuma@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 13:39:50 by ysakuma           #+#    #+#             */
-/*   Updated: 2020/11/01 19:45:04 by ysakuma          ###   ########.fr       */
+/*   Updated: 2020/11/02 15:32:21 by ysakuma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-//test
+
 #include "get_next_line.h"
 
 int	gnl_overwite(char **save, char **line, char *buf)
