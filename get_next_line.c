@@ -6,7 +6,7 @@
 /*   By: ysakuma <ysakuma@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 13:39:50 by ysakuma           #+#    #+#             */
-/*   Updated: 2020/11/03 15:29:34 by ysakuma          ###   ########.fr       */
+/*   Updated: 2020/11/03 18:47:11 by ysakuma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,5 @@ int	get_next_line(int fd, char **line)
 		if (len < BUFFER_SIZE)
 			return (gnl_lastact(&save[fd], line, buf));
 	}
-	free(buf);
-	free(save);
 	return (-1);//error
 }
