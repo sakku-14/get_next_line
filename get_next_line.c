@@ -6,7 +6,7 @@
 /*   By: ysakuma <ysakuma@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 13:39:50 by ysakuma           #+#    #+#             */
-/*   Updated: 2020/11/04 13:17:35 by ysakuma          ###   ########.fr       */
+/*   Updated: 2020/11/04 13:59:32 by ysakuma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,10 +82,7 @@ int	get_next_line(int fd, char **line)
 		if (!(save[fd] = ft_calloc(1, sizeof(char))))
 			return (-1);
 	if (!(buf = malloc(BUFFER_SIZE)))
-	{
-		free(save[fd]);
-		return (-1);
-	}
+		return(gnl_erroract(&save[fd], NULL, NULL));
 	if (ft_memchr(save[fd], '\n', ft_strlen(save[fd])))
 	{
 		return (gnl_overwite(&save[fd], line, buf));
