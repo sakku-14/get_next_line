@@ -6,7 +6,7 @@
 /*   By: ysakuma <ysakuma@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 13:39:50 by ysakuma           #+#    #+#             */
-/*   Updated: 2020/11/04 13:13:33 by ysakuma          ###   ########.fr       */
+/*   Updated: 2020/11/04 13:17:35 by ysakuma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ static int	gnl_overwite(char **save, char **line, char *buf)
 	if (!(tmp = malloc(sizeof(char) * (len_after + 1))))
 		return (gnl_erroract(save, line, buf));
 	ft_strlcpy(tmp, *save + len + 1, len_after + 1);
+	free(*save);
 	*save = tmp;
 	free(buf);
 	return (1);
