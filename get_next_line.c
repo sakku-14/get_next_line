@@ -6,7 +6,7 @@
 /*   By: ysakuma <ysakuma@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 13:39:50 by ysakuma           #+#    #+#             */
-/*   Updated: 2020/11/04 13:59:32 by ysakuma          ###   ########.fr       */
+/*   Updated: 2020/11/04 14:01:59 by ysakuma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static int	gnl_lastact(char **save, char **line, char *buf)
 	return (0);
 }
 
-int	get_next_line(int fd, char **line)
+int			get_next_line(int fd, char **line)
 {
 	ssize_t		len;
 	static char	*save[MAX_FD];
@@ -82,7 +82,7 @@ int	get_next_line(int fd, char **line)
 		if (!(save[fd] = ft_calloc(1, sizeof(char))))
 			return (-1);
 	if (!(buf = malloc(BUFFER_SIZE)))
-		return(gnl_erroract(&save[fd], NULL, NULL));
+		return (gnl_erroract(&save[fd], NULL, NULL));
 	if (ft_memchr(save[fd], '\n', ft_strlen(save[fd])))
 	{
 		return (gnl_overwite(&save[fd], line, buf));

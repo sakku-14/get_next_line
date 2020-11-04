@@ -6,7 +6,7 @@
 /*   By: ysakuma <ysakuma@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 13:43:34 by ysakuma           #+#    #+#             */
-/*   Updated: 2020/11/04 13:27:59 by ysakuma          ###   ########.fr       */
+/*   Updated: 2020/11/04 14:02:25 by ysakuma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	*ft_calloc(size_t count, size_t size)
 {
-	void	*ret;
-	size_t	i;
+	void			*ret;
+	size_t			i;
 	unsigned char	*ret_c;
 
 	if (!count || !size)
