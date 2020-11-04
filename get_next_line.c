@@ -6,7 +6,7 @@
 /*   By: ysakuma <ysakuma@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 13:39:50 by ysakuma           #+#    #+#             */
-/*   Updated: 2020/11/04 12:19:37 by ysakuma          ###   ########.fr       */
+/*   Updated: 2020/11/04 12:27:12 by ysakuma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static int	gnl_lastact(char **save, char **line, char *buf)
 	return (0);
 }
 
-static int	get_next_line(int fd, char **line)
+int	get_next_line(int fd, char **line)
 {
 	ssize_t		len;
 	static char	*save[MAX_FD];
