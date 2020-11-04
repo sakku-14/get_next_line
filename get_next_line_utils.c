@@ -6,7 +6,7 @@
 /*   By: ysakuma <ysakuma@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 13:43:34 by ysakuma           #+#    #+#             */
-/*   Updated: 2020/10/29 18:20:49 by ysakuma          ###   ########.fr       */
+/*   Updated: 2020/11/04 12:20:46 by ysakuma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ void	*ft_memset(void *b, int c, size_t len)
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	char	*src_c;
-	int		len;
+	char		*src_c;
+	size_t		len;
 
 	src_c = (char *)src;
 	len = ft_strlen(src);

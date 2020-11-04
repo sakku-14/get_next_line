@@ -6,13 +6,21 @@
 /*   By: ysakuma <ysakuma@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 13:39:50 by ysakuma           #+#    #+#             */
-/*   Updated: 2020/11/03 20:43:51 by ysakuma          ###   ########.fr       */
+/*   Updated: 2020/11/04 12:19:37 by ysakuma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	gnl_overwite(char **save, char **line, char *buf)
+static int	gnl_erroract(char **save, char **line, char *buf)
+{
+	free(*save);
+	free(buf);
+	free(*line);
+	return (-1);
+}
+
+static int	gnl_overwite(char **save, char **line, char *buf)
 {
 	size_t	len;
 	size_t	len_after;
@@ -22,54 +30,50 @@ int	gnl_overwite(char **save, char **line, char *buf)
 	while (*(*save + len) != '\n')
 		len++;
 	if (!(*line = malloc(sizeof(char) * (len + 1))))
-		return (-1);//error処理
+		return (gnl_erroract(save, NULL, buf));
 	ft_strlcpy(*line, *save, len + 1);
 	len_after = ft_strlen(*save + len + 1);
 	if (!(tmp = malloc(sizeof(char) * (len_after + 1))))
-		return (-1);//error処理
+		return (gnl_erroract(save, line, buf));
 	ft_strlcpy(tmp, *save + len + 1, len_after + 1);
 	*save = tmp;
 	free(buf);
 	return (1);
 }
 
-int gnl_attach(char *buf, char **save, ssize_t len)
+static int	gnl_attach(char *buf, char **save, ssize_t len)
 {
 	size_t	ori_len;
 	char	*tmp;
 
 	ori_len = ft_strlen(*save);
-	if (!(tmp = malloc(sizeof(char) * (ori_len + 1))))
-		return (-1);//error
+	if (!(tmp = malloc(sizeof(char) * (ori_len + len + 1))))
+		return (1);
 	ft_strlcpy(tmp, *save, ori_len + 1);
-	if (!(*save = malloc(sizeof(char) * (ori_len + len + 1))))
-	{
-		free(tmp);
-		return (-1);//error
-	}
-	ft_strlcpy(*save, tmp, ori_len + 1);
-	ft_strlcat(*save, buf, ori_len + len + 1);
+	ft_strlcat(tmp, buf, ori_len + len + 1);
+	free(*save);
+	*save = tmp;
 	return (0);
 }
 
-int	gnl_lastact(char **save, char **line, char *buf)
+static int	gnl_lastact(char **save, char **line, char *buf)
 {
 	size_t	len;
 
 	len = ft_strlen(*save);
 	if (!(*line = malloc(sizeof(char) * (len + 1))))
-		return (-1);//error処理
+		return (gnl_erroract(save, NULL, buf));
 	ft_strlcpy(*line, *save, len + 1);
 	free(buf);
 	free(*save);
 	return (0);
 }
 
-int	get_next_line(int fd, char **line)
+static int	get_next_line(int fd, char **line)
 {
-	ssize_t len;
-	static char *save[MAX_FD];
-	char *buf;
+	ssize_t		len;
+	static char	*save[MAX_FD];
+	char		*buf;
 
 	if (!line || fd < 0 || fd > MAX_FD)
 		return (-1);
@@ -88,11 +92,11 @@ int	get_next_line(int fd, char **line)
 	while ((len = read(fd, buf, BUFFER_SIZE)) >= 0)
 	{
 		if (gnl_attach(buf, &save[fd], len))
-			return (-1);//error
+			return (gnl_erroract(&save[fd], NULL, buf));
 		if (ft_memchr(buf, '\n', len))
 			return (gnl_overwite(&save[fd], line, buf));
 		if (len < BUFFER_SIZE)
 			return (gnl_lastact(&save[fd], line, buf));
 	}
-	return (-1);//error
+	return (gnl_erroract(&save[fd], NULL, buf));
 }
