@@ -6,7 +6,7 @@
 /*   By: ysakuma <ysakuma@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 13:43:50 by ysakuma           #+#    #+#             */
-/*   Updated: 2020/11/04 12:26:11 by ysakuma          ###   ########.fr       */
+/*   Updated: 2020/11/04 12:45:34 by ysakuma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,6 @@
 #  define BUFFER_SIZE 42
 # endif
 
-static int		gnl_erroract(char **save, char **line, char *buf);
-static int		gnl_overwite(char **save, char **line, char *buf);
-static int		gnl_attach(char *buf, char **save, ssize_t len);
-static int		gnl_lastact(char **save, char **line, char *buf);
 int		get_next_line(int fd, char **line);
 void	*ft_calloc(size_t count, size_t size);
 void	*ft_memset(void *b, int c, size_t len);
