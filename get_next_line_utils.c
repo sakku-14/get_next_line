@@ -6,7 +6,7 @@
 /*   By: ysakuma <ysakuma@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 13:43:34 by ysakuma           #+#    #+#             */
-/*   Updated: 2020/11/04 12:20:46 by ysakuma          ###   ########.fr       */
+/*   Updated: 2020/11/04 13:27:59 by ysakuma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 void	*ft_calloc(size_t count, size_t size)
 {
-	void *ret;
+	void	*ret;
+	size_t	i;
+	unsigned char	*ret_c;
 
 	if (!count || !size)
 	{
@@ -23,18 +25,11 @@ void	*ft_calloc(size_t count, size_t size)
 	}
 	if (!(ret = malloc(count * size)))
 		return (NULL);
-	ft_memset(ret, 0, count * size);
+	ret_c = (unsigned char *)ret;
+	i = 0;
+	while (i < count * size)
+		ret_c[i++] = 0;
 	return (ret);
-}
-
-void	*ft_memset(void *b, int c, size_t len)
-{
-	unsigned char *bb;
-
-	bb = (unsigned char*)b;
-	while (len--)
-		*bb++ = (unsigned char)c;
-	return (b);
 }
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
