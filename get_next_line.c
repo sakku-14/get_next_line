@@ -6,7 +6,7 @@
 /*   By: ysakuma <ysakuma@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 13:39:50 by ysakuma           #+#    #+#             */
-/*   Updated: 2020/11/03 18:47:11 by ysakuma          ###   ########.fr       */
+/*   Updated: 2020/11/03 20:43:51 by ysakuma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,10 @@ int gnl_attach(char *buf, char **save, ssize_t len)
 		return (-1);//error
 	ft_strlcpy(tmp, *save, ori_len + 1);
 	if (!(*save = malloc(sizeof(char) * (ori_len + len + 1))))
+	{
+		free(tmp);
 		return (-1);//error
+	}
 	ft_strlcpy(*save, tmp, ori_len + 1);
 	ft_strlcat(*save, buf, ori_len + len + 1);
 	return (0);
@@ -59,7 +62,6 @@ int	gnl_lastact(char **save, char **line, char *buf)
 	ft_strlcpy(*line, *save, len + 1);
 	free(buf);
 	free(*save);
-	*save = NULL;
 	return (0);
 }
 
@@ -74,10 +76,9 @@ int	get_next_line(int fd, char **line)
 	if (!save[fd])
 		if (!(save[fd] = ft_calloc(1, sizeof(char))))
 			return (-1);
-	if (!(buf = malloc(BUFFER_SIZE + 1)))
+	if (!(buf = malloc(BUFFER_SIZE)))
 	{
 		free(save[fd]);
-		save[fd] = NULL;
 		return (-1);
 	}
 	if (ft_memchr(save[fd], '\n', ft_strlen(save[fd])))
