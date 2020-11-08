@@ -6,7 +6,7 @@
 /*   By: ysakuma <ysakuma@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 13:39:50 by ysakuma           #+#    #+#             */
-/*   Updated: 2020/11/04 14:01:59 by ysakuma          ###   ########.fr       */
+/*   Updated: 2020/11/09 06:19:18 by ysakuma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,7 @@ int			get_next_line(int fd, char **line)
 	if (!(buf = malloc(BUFFER_SIZE)))
 		return (gnl_erroract(&save[fd], NULL, NULL));
 	if (ft_memchr(save[fd], '\n', ft_strlen(save[fd])))
-	{
 		return (gnl_overwite(&save[fd], line, buf));
-	}
 	while ((len = read(fd, buf, BUFFER_SIZE)) >= 0)
 	{
 		if (gnl_attach(buf, &save[fd], len))
