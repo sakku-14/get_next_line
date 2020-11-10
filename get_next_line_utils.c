@@ -6,7 +6,7 @@
 /*   By: ysakuma <ysakuma@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 13:43:34 by ysakuma           #+#    #+#             */
-/*   Updated: 2020/11/04 14:02:25 by ysakuma          ###   ########.fr       */
+/*   Updated: 2020/11/10 17:39:34 by ysakuma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,6 @@ void	*ft_calloc(size_t count, size_t size)
 	size_t			i;
 	unsigned char	*ret_c;
 
-	if (!count || !size)
-	{
-		count = 1;
-		size = 1;
-	}
 	if (!(ret = malloc(count * size)))
 		return (NULL);
 	ret_c = (unsigned char *)ret;
