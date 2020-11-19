@@ -70,7 +70,5 @@ int		main(int argc, char **argv)
 		i++;
 	}
 	printf("finished\n");
-	#ifdef LEAKCHECK
-	while(1);
-	#endif
+//	while(1);
 }

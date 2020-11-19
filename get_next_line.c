@@ -6,7 +6,7 @@
 /*   By: ysakuma <ysakuma@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 13:39:50 by ysakuma           #+#    #+#             */
-/*   Updated: 2020/11/18 10:21:28 by ysakuma          ###   ########.fr       */
+/*   Updated: 2020/11/18 10:42:44 by ysakuma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	gnl_erroract(char **save, char **line, char *buf)
 	free(*save);
 	*save = NULL;
 	free(buf);
-//	buf = NULL;
+	buf = NULL;
 	if (line)
 	{
 		free(*line);
@@ -45,7 +45,7 @@ static int	gnl_overwite(char **save, char **line, char *buf)
 	free(*save);
 	*save = tmp;
 	free(buf);
-//	buf = NULL;
+	buf = NULL;
 	return (1);
 }
 
@@ -73,7 +73,7 @@ static int	gnl_lastact(char **save, char **line, char *buf)
 		return (gnl_erroract(save, NULL, buf));
 	ft_strlcpy(*line, *save, len + 1);
 	free(buf);
-//	buf = NULL;
+	buf = NULL;
 	free(*save);
 	*save = NULL;
 	return (0);
