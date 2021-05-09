@@ -1,7 +1,7 @@
 # get_next_line
 
 ## Features
-This project is to create program about get_next_line.
+This project is to create function about get_next_line.
 You can read each line till '\n'(newline) or EOF in any file chosen file descriptors. When you need to read format file, this program work well. After read each line till '\n', this returns 1. When read till EOF, this returns 0.
 
 ## Requirement
@@ -13,20 +13,7 @@ Clone this repository:
 git clone https://github.com/sakku-14/get_next_line
 ```
 
-Generate ***get_next_line.a***:
-```shell
-make
-```
-
-Remove objective files:
-```shell
-make clean
-```
-
-Delete all:
-```shell
-make fclean
-```
+You can use this function in any c-lang programing.
 
 ## Note
 
